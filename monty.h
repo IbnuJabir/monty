@@ -32,5 +32,8 @@ typedef struct instruction_s
 void push(stack_t **stack, unsigned int line_number, char *line);
 void pall(stack_t **stack);
 void handle_file(const char *filename);
-
+int is_number(const char *str);
+void process_line(char *line, stack_t **stack, unsigned int line_number);
+void handle_instruction(char *command, char *argument,
+stack_t **stack, unsigned int line_number);
 #endif /* MONTY_H */
