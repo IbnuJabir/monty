@@ -40,6 +40,7 @@ void push(stack_t **stack, unsigned int line_number, char *line)
 	}
 
 	*stack = new_node;
+	/*free(new_node);*/
 }
 
 /**
