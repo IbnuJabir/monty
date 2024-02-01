@@ -6,7 +6,7 @@
  *
  * Return: None
  */
-char *arg = "";
+char *arg = NULL;
 void handle_file(const char *filename)
 {
 	FILE *file;
@@ -53,7 +53,6 @@ void process_line(char *line, stack_t **stack, unsigned int line_number)
 		handle_instruction(command, argument, stack, line_number);
 	}
 }
-
 /**
  * handle_instruction - Handle a specific instruction
  * @command: Instruction command
@@ -63,26 +62,27 @@ void process_line(char *line, stack_t **stack, unsigned int line_number)
  *
  * Return: None
  */
-void handle_instruction(char *command, char *argument,
-stack_t **stack, unsigned int line_number)
+void handle_instruction(char *command, char *argument, stack_t **stack, unsigned int line_number)
 {
-	if (strcmp(command, "push") == 0 && argument != NULL)
-	{
-		instruction_t instruction = {"push", push};
+	instruction_t opst[] = {
+		{"push", push},
+		{"pall", pall},
+		{"pint", pint},
+	};
 
-		instruction.f = push;
-		instruction.f(stack, line_number);
-	}
-	else if (strcmp(command, "pall") == 0)
-	{
-		instruction_t instruction = {"pall", pall};
+	int num_opcodes = sizeof(opst) / sizeof(instruction_t);
+	int i;
 
-		instruction.f = pall;
-		instruction.f(stack, line_number);
-	}
-	else
+	for (i = 0; i < num_opcodes; i++)
 	{
-		fprintf(stderr, "L%d: unknown instruction %s\n", line_number, command);
-		exit(EXIT_FAILURE);
+		if (strcmp(command, opst[i].opcode) == 0)
+		{
+			arg = argument;
+			opst[i].f(stack, line_number);
+			return;
+		}
 	}
+
+	fprintf(stderr, "L%d: unknown instruction %s\n", line_number, command);
+	exit(EXIT_FAILURE);
 }
