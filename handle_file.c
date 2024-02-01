@@ -14,7 +14,7 @@ void handle_file(const char *filename)
 	unsigned int line_number = 1;
 
 	file = fopen(filename, "r");
-	if (file == NULL)
+	if (!file)
 	{
 		fprintf(stderr, "Error: Can't open file %s\n", filename);
 		exit(EXIT_FAILURE);
