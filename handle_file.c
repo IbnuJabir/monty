@@ -6,6 +6,7 @@
  *
  * Return: None
  */
+char *arg = "";
 void handle_file(const char *filename)
 {
 	FILE *file;
@@ -46,6 +47,7 @@ void process_line(char *line, stack_t **stack, unsigned int line_number)
 	command = strtok(line, " $");
 	argument = strtok(NULL, " $");
 
+	arg = argument;
 	if (command != NULL)
 	{
 		handle_instruction(command, argument, stack, line_number);
