@@ -1,10 +1,10 @@
 #include "monty.h"
+
 /**
  * handle_file - Handle file operations
  * @filename: Name of the file to handle
  *
- * Return:
- * None
+ * Return: None
  */
 void handle_file(const char *filename)
 {
@@ -36,8 +36,7 @@ void handle_file(const char *filename)
  * @stack: Pointer to the stack
  * @line_number: Line number
  *
- * Return:
- * None
+ * Return: None
  */
 void process_line(char *line, stack_t **stack, unsigned int line_number)
 {
@@ -60,19 +59,24 @@ void process_line(char *line, stack_t **stack, unsigned int line_number)
  * @stack: Pointer to the stack
  * @line_number: Line number
  *
- * Return:
- * None
+ * Return: None
  */
 void handle_instruction(char *command, char *argument,
 stack_t **stack, unsigned int line_number)
 {
 	if (strcmp(command, "push") == 0 && argument != NULL)
 	{
-		push(stack, line_number, argument);
+		instruction_t instruction = {"push", push};
+
+		instruction.f = push;
+		instruction.f(stack, line_number);
 	}
 	else if (strcmp(command, "pall") == 0)
 	{
-		pall(stack);
+		instruction_t instruction = {"pall", pall};
+
+		instruction.f = pall;
+		instruction.f(stack, line_number);
 	}
 	else
 	{
