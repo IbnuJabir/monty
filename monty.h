@@ -39,4 +39,6 @@ int is_number(const char *str);
 void process_line(char *line, stack_t **stack, unsigned int line_number);
 void handle_instruction(char *command, char *argument,
 stack_t **stack, unsigned int line_number);
+void free_stack(stack_t **stack);
+
 #endif /* MONTY_H */

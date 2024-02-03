@@ -1,7 +1,3 @@
-#include "monty.h"
-#include <stdio.h>
-#include <stdlib.h>
-
 /**
  * push - Push a value onto the stack
  * @stack: Double pointer to the stack
@@ -14,19 +10,21 @@ void push(stack_t **stack, unsigned int line_number)
 	stack_t *new_node;
 	int a;
 
+	if (arg == NULL || !is_number(arg))
+	{
+		fprintf(stderr, "L%d: usage: push integer\n", line_number);
+		free_stack(stack);
+		exit(EXIT_FAILURE);
+	}
+
 	new_node = malloc(sizeof(stack_t));
-	if (arg != NULL)
-{
 	if (new_node == NULL)
 	{
 		fprintf(stderr, "Error: malloc failed\n");
+		free_stack(stack);
 		exit(EXIT_FAILURE);
 	}
-	if (!is_number(arg) || arg == NULL)
-	{
-		fprintf(stderr, "L%d: usage: push integer\n", line_number);
-		exit(EXIT_FAILURE);
-	}
+
 	a = atoi(arg);
 
 	new_node->n = a;
@@ -39,8 +37,10 @@ void push(stack_t **stack, unsigned int line_number)
 	}
 
 	*stack = new_node;
+
+	new_node = NULL;
 }
-}
+
 /**
  * is_number - Check if a string is a valid number
  * @str: String to check

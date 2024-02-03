@@ -16,6 +16,6 @@ int main(int argc, char *argv[])
 	}
 
 	handle_file(argv[1]);
-
+	free(arg);
 	return (0);
 }
