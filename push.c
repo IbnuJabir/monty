@@ -15,12 +15,14 @@ void push(stack_t **stack, unsigned int line_number)
 	int a;
 
 	new_node = malloc(sizeof(stack_t));
+	if (arg != NULL)
+{
 	if (new_node == NULL)
 	{
 		fprintf(stderr, "Error: malloc failed\n");
 		exit(EXIT_FAILURE);
 	}
-	if (!is_number(arg))
+	if (!is_number(arg) || arg == NULL)
 	{
 		fprintf(stderr, "L%d: usage: push integer\n", line_number);
 		exit(EXIT_FAILURE);
@@ -37,6 +39,7 @@ void push(stack_t **stack, unsigned int line_number)
 	}
 
 	*stack = new_node;
+}
 }
 /**
  * is_number - Check if a string is a valid number
