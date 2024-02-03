@@ -44,8 +44,8 @@ void process_line(char *line, stack_t **stack, unsigned int line_number)
     char *command;
     char *argument;
 
-    command = strtok(line, " $\t\n");
-    argument = strtok(NULL, " $\t\n");
+    command = strtok(line, " \t\n");
+    argument = strtok(NULL, " \t\n");
 
     arg = argument;
     if (command != NULL)
