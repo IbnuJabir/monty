@@ -1,3 +1,4 @@
+#include "monty.h"
 /**
  * free_stack - Frees the stack
  * @stack: Double pointer to the head of the stack
