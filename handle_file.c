@@ -74,6 +74,7 @@ stack_t **stack, unsigned int line_number)
 		{"pop", pop},
 		{"swap", swap},
 		{"add", add},
+		{"nop", nop},
 	};
 
 	int num_opcodes = sizeof(opst) / sizeof(instruction_t);
