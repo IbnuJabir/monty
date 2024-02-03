@@ -6,7 +6,7 @@
  *
  * Return: None
  */
-char *arg = NULL;
+
 void handle_file(const char *filename)
 {
 	FILE *file;
@@ -71,6 +71,8 @@ stack_t **stack, unsigned int line_number)
 		{"push", push},
 		{"pall", pall},
 		{"pint", pint},
+		{"pop", pop},
+		{NULL, NULL},
 	};
 
 	int num_opcodes = sizeof(opst) / sizeof(instruction_t);
