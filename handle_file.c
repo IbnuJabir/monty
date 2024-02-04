@@ -93,6 +93,9 @@ stack_t **stack, unsigned int line_number)
 		{"div", fdiv},
 		{"mul", mul},
 		{"mod", mod},
+		{"pchr", pchar},
+		{"pstr", pstr},
+		{"rotl", rotl},
 	};
 
 	int num_opcodes = sizeof(opst) / sizeof(instruction_t);
