@@ -35,6 +35,7 @@ void handle_file(const char *filename)
 
 /**
  * process_line - Process a line from the file
+ *
  * @line: Line to process
  * @stack: Pointer to the stack
  * @line_number: Line number
@@ -45,6 +46,19 @@ void process_line(char *line, stack_t **stack, unsigned int line_number)
 {
 	char *command;
 	char *argument;
+
+	/* Skip lines starting with '#' or having spaces/tabs before '#' */
+	size_t i;
+
+	for (i = 0; i < strlen(line); i++)
+	{
+		if (line[i] == '#' || (!isspace((unsigned char)line[i]) && line[i] != '\t'))
+			break;
+	}
+
+	/* starts with '#' after spaces/tabs, skip it */
+	if (i == strlen(line) || line[i] == '#')
+		return;
 
 	command = strtok(line, " $\t\n");
 	argument = strtok(NULL, " $\t\n");
